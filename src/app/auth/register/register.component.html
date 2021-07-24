@@ -1,0 +1,23 @@
+<form #formData='ngForm' class="p-4 p-md-5 border-black rounded-3" (ngSubmit)="tapRegister()">
+    <h1 class="display-4 text-right fw-bold lh-1">Sign Up</h1>
+    <div class="form-floating mb-3">
+        <input type="username" class="form-control" id="username" placeholder="John" name="username"
+            [(ngModel)]="register.username" required>
+        <label for="username">Username</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="email" placeholder="email address" name="email"
+            [(ngModel)]="register.email" required>
+        <label for="email">Email address</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="password" class="form-control" id="password" placeholder="password" name="password"
+            [(ngModel)]="register.password" required>
+        <label for="password">Password</label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="!formData.valid">Sign up</button>
+    <hr class="my-4">
+    <div class="text-center">
+        <button type="button" class="btn btn-link mt-2" routerLink="/login">Sudah punya akun ?</button>
+    </div>
+</form>

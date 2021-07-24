@@ -1,0 +1,87 @@
+<div [ngClass]="{'loading': loading}">
+    <form #formData='ngForm' (ngSubmit)="simpanResep()">
+        <div class="modal-header">
+            <h4 class="modal-title">{{ title }}</h4>
+            <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row justify-content-md-center mb-3">
+                <div class="text-center">
+                    <img [src]="imgSrc" class="d-block mb-4 mx-lg-auto cursor-pointer img-fluid" alt="Bootstrap Themes" width="150"
+                        loading="lazy" (click)="fileUpload.click()">
+                    <div class="form-group">
+                        <input #fileUpload type="file" accept="image/*" class="form-control-file" id="image"
+                            (change)="getImage($event)" required>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="form-floating mb-3">
+                <input type="username" class="form-control" id="floatingName" placeholder="Nama Resep"
+                    [(ngModel)]="resep.name" name="name" required>
+                <label for="floatingName">Nama resep</label>
+            </div>
+    
+            <div class="form-floating mb-3">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingDesc" rows="5"
+                    [(ngModel)]="resep.description" name="description" required></textarea>
+                <label for="floatingDesc">Deskripsi makanan</label>
+            </div>
+    
+            <label>List Bahan</label>
+            <div *ngFor="let bahan of listBahan; let idx=index">
+                <div class="form-group">
+                    <div class="row align-items-center">
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" [value]="bahan" disabled>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-warning cursor-pointer btn-circle" (click)="btnHapusBahan(idx)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf='showTambah'>
+                <div class="form-group">
+                    <div class="row align-items-center">
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" pl2aceholder="Resep bahan" name="tambahBahan"
+                                (change)="tambahBahan($event)" required>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-warning cursor-pointer btn-circle" (click)="btnBatal()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="d-grid gap-2 d-md-flex mb-4">
+                <button type="button" class="btn btn-primary" (click)="btnTambah()">Tambah</button>
+            </div>
+    
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingCara" rows="5"
+                    [(ngModel)]="resep.cara_pembuatan" name="cara_pembuatan" required></textarea>
+                <label for="floatingCara">Cara pembuatan</label>
+            </div>
+    
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary cursor-pointer" type="submit" [disabled]="!formData.valid">Simpan</button>
+        </div>
+    </form>
+</div>

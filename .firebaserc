@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "project-recipes-c76cc": {
+      "hosting": {
+        "food-recipes": [
+          "project-recipes-c76cc"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+::placeholder {
+    color: grey !important;
+}  
+
+.navbar .search {
+    width: 114px;
+}
+
+.form-control-rounded {
+    border-radius: 1rem;
+}
+
+.navbar, .navbar * {
+    -webkit-transition: all .25s ease-in-out;
+    transition: all 0.25s ease-in-out;
+}
+
+.form-control {
+    -webkit-transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.navbar {
+    .search:focus {
+        width: 300px;
+        content: "Type here";
+    }
+}
