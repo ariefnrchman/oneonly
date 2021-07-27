@@ -60,10 +60,10 @@ export class AuthComponent implements OnInit {
       register.email,
       register.password
     ).then((resp) => {
-      this.route.navigateByUrl('/login');
       register['role'] = 'user';
       this.fire.collection('user').add(register)
       this.loading = false;
+      this.route.navigateByUrl('/login');
     }).catch((err) => {
       this.loading = false;
       this.errorMessage = err['message'];

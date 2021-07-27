@@ -15,7 +15,7 @@ export class AdminComponent implements OnInit {
   listData: any = [];
   getId?: string;
   nameResep?: string;
-  isEmpty: boolean = false;
+  isEmpty: boolean = true;
 
   constructor(
     public auth: AngularFireAuth,
@@ -33,7 +33,7 @@ export class AdminComponent implements OnInit {
       } else {
         fire.collection('user').ref.where('email', '==', resp!.email).onSnapshot(snapshot => {
           snapshot.forEach(ref => {
-            this.getData(ref.data()['username'])
+            this.getData(ref.data()['username']);
           })
         })
       }
@@ -43,10 +43,10 @@ export class AdminComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getData(author: string) {
+  getData(author: String) {
     this.fire.collection('resep', ref => ref.where('author', '==', author)).snapshotChanges().subscribe((resp) => {
       this.listData = resp
-      if (this.listData.length === 0) this.isEmpty = true;
+      if (this.listData.length != 0) this.isEmpty = false;
     })
   }
 

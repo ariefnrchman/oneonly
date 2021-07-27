@@ -62,6 +62,7 @@ export class ModalProductComponent implements OnInit {
   }
 
   getData() {
+    console.log(this.dataUser);
     if(this.id != null) {
       this.title = "Detail Resep";
       this.fire.collection('resep').doc(this.id).get().subscribe((resp) => {
